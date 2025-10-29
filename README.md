@@ -40,6 +40,11 @@ A full-stack booking application built with Next.js + Prisma for experiences and
 - npm or yarn (or pnpm)  
 - A running database server (PostgreSQL, MySQL, SQLite)  
 - Git (to clone the repo)  
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 ## Setup  
 
@@ -49,9 +54,4 @@ git clone https://github.com/JAS2609/BookIt-Experiences-Slots.git
 cd BookIt-Experiences-Slots
 
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
