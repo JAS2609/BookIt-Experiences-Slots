@@ -22,7 +22,7 @@ const ExperienceBookingHome: React.FC = () => {
     const fetchExperiences = async (): Promise<void> => {
       setLoading(true);
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/experiences`);
+        const response = await fetch(`/api/experiences`);
         if (!response.ok) {
           throw new Error('Failed to fetch experiences');
         }

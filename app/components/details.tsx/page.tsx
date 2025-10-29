@@ -38,7 +38,7 @@ const ExperienceDetails: React.FC<ExperienceDetailsProps> = ({ experienceId, onB
     const fetchExperience = async (): Promise<void> => {
       setLoading(true);
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/experiences/${experienceId}`);
+        const response = await fetch(`/api/experiences/${experienceId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch experience details');
         }
@@ -385,7 +385,7 @@ const Checkout: React.FC<CheckoutProps> = ({
     setPromoError(null);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/promo/validate`, {
+      const response = await fetch(`/api/promo/validate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -449,7 +449,7 @@ const Checkout: React.FC<CheckoutProps> = ({
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/bookings`, {
+      const response = await fetch(`/api/bookings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
