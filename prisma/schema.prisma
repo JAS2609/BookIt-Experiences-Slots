@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Experience{
+  id String @id @default(cuid())
+  title String
+  details String?
+  availability Boolean @default(true)
+  price Float
+  about String?
+  imageUrl    String?
+  location String
+  dates   ExperienceDate[]
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+}
+model ExperienceDate {
+  id           String @id @default(cuid())
+  experienceId  String 
+  date          DateTime         @db.Date
+  isActive      Boolean          @default(true)
+  experience    Experience       @relation(fields: [experienceId], references: [id])
+  timeSlots     ExperienceSlot[]
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+}
+model ExperienceSlot {
+  id           String @id @default(cuid())
+  dateId        String 
+  startTime     DateTime
+  endTime       DateTime
+  capacity      Int              @default(10) 
+  bookedCount   Int              @default(0)  
+  isAvailable   Boolean          @default(true)
+  date          ExperienceDate   @relation(fields: [dateId], references: [id])
+  bookings      Booking[]
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+}
+
+model Booking {
+  id           String @id @default(cuid())
+  customerName  String
+  customerEmail String
+  slotId      String 
+  promoCode      String?
+  status        BookingStatus    @default(PENDING)
+  slot          ExperienceSlot   @relation(fields: [slotId], references: [id])
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+}
+
+enum BookingStatus {
+  PENDING
+  BOOKED
+  CANCELLED
+  COMPLETED
+}
+model PromoCode {
+  id            String    @id @default(cuid())
+  code          String    @unique
+  discountValue Float
+  isActive      Boolean   @default(true)
+  usedCount     Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
